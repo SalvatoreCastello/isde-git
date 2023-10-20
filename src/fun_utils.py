@@ -46,7 +46,7 @@ def split_data(x, y, tr_fraction=0.5):
     n_samples = x.shape[0]
     idx = list(range(0, n_samples))  # [0 1 ... 999]  np.linspace
     np.random.shuffle(idx)
-    n_tr = int(fraction_tr * n_samples)
+    n_tr = int(fract_tr * n_samples)
 
     idx_tr = idx[:n_tr]
     idx_ts = idx[n_tr:]
