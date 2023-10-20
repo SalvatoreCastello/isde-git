@@ -27,11 +27,37 @@ def load_data(filename):
 
 
 def split_data(x, y, tr_fraction=0.5):
-    """
-    Split the data x, y into two random subsets
+    """Split the data X,y into two random subsets.
+
+    input:
+        x: set of images
+        y: labels
+        fract_tr: float, percentage of samples to put in the training set.
+            If necessary, number of samples in the training set is rounded to
+            the lowest integer number.
+
+    output:
+        Xtr: set of images (numpy array, training set)
+        Xts: set of images (numpy array, test set)
+        ytr: labels (numpy array, training set)
+        yts: labels (numpy array, test set)
 
     """
-    pass
+    n_samples = x.shape[0]
+    idx = list(range(0, n_samples))  # [0 1 ... 999]  np.linspace
+    np.random.shuffle(idx)
+    n_tr = int(tr_fraction * n_samples)
+
+    idx_tr = idx[:n_tr]
+    idx_ts = idx[n_tr:]
+
+    xtr = x[idx_tr, :]
+    ytr = y[idx_tr]
+    xts = x[idx_ts, :]
+    yts = y[idx_ts]
+
+    return xtr, ytr, xts, yts
+
 
 def load_mnist(csv_filename):
     # loads data from a CSV file hosted in our repository
