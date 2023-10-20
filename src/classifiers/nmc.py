@@ -38,4 +38,10 @@ class NMC(object):
         pass
 
     def predict(self, xts):
-        pass
+        n_samples = xts.shape[0]
+        n_classes = self.centroids.shape[0]
+        dist = np.zeros(shape=(n_samples, n_classes))
+        for k in range(0, n_classes):
+            dist[:, k] = np.sum((xts - self.centroids[k, :]) ** 2, axis=1)  # broadcasting
+        ypred = np.argmin(dist, axis=1)
+        return ypred
