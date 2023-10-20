@@ -43,7 +43,6 @@ def split_data(x, y, tr_fraction=0.5):
         yts: labels (numpy array, test set)
 
     """
-    2-split-data
     n_samples = x.shape[0]
     idx = list(range(0, n_samples))  # [0 1 ... 999]  np.linspace
     np.random.shuffle(idx)
