@@ -1,4 +1,4 @@
-from pandas import read_csv
+import pandas as pd
 import numpy as np
 
 
@@ -19,7 +19,7 @@ def load_data(filename):
     y : ndarray
         the labels of each sample.
     """
-    data = read_csv(filename)
+    data = pd.read_csv(filename)
     z = np.array(data)
     y = z[:, 0]
     X = z[:, 1:]
@@ -43,6 +43,7 @@ def split_data(x, y, tr_fraction=0.5):
         yts: labels (numpy array, test set)
 
     """
+    2-split-data
     n_samples = x.shape[0]
     idx = list(range(0, n_samples))  # [0 1 ... 999]  np.linspace
     np.random.shuffle(idx)
@@ -57,3 +58,14 @@ def split_data(x, y, tr_fraction=0.5):
     yts = y[idx_ts]
 
     return xtr, ytr, xts, yts
+
+
+def load_mnist(csv_filename):
+    # loads data from a CSV file hosted in our repository
+    data = pd.read_csv(csv_filename)
+    data = np.array(data)  # cast pandas dataframe to numpy array
+
+    y = data[:, 0]
+    X = data[:, 1:]
+
+    return X, y
